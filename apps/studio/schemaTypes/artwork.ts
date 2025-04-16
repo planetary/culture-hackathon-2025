@@ -9,13 +9,11 @@ export const artworkType = defineType({
     defineField({
       name: 'name',
       type: 'string',
-      validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: 'artist',
       type: 'reference',
       to: [{type: 'person'}],
-      validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: 'images',

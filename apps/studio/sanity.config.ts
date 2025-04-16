@@ -4,6 +4,8 @@ import {visionTool} from '@sanity/vision'
 import {schemaTypes} from './schemaTypes'
 import {media} from 'sanity-plugin-media'
 import {structure} from './structure'
+import {assist} from '@sanity/assist'
+
 export default defineConfig({
   name: 'default',
   title: 'Culture Hackathon 2025',
@@ -11,7 +13,7 @@ export default defineConfig({
   projectId: process.env.SANITY_STUDIO_PROJECT_ID!,
   dataset: 'production',
 
-  plugins: [structureTool({structure}), visionTool(), media()],
+  plugins: [structureTool({structure}), visionTool(), media(), assist()],
 
   schema: {
     types: schemaTypes,

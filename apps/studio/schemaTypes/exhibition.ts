@@ -22,6 +22,7 @@ export const exhibitionType = defineType({
     defineField({
       name: 'images',
       type: 'array',
+      description: 'Images of this exhibition',
       of: [
         {
           type: 'image',
@@ -44,6 +45,7 @@ export const exhibitionType = defineType({
     }),
     defineField({
       name: 'description',
+      description: 'A description of the exhibition',
       type: 'array',
       of: [
         {
