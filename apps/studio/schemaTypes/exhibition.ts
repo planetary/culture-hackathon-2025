@@ -32,6 +32,17 @@ export const exhibitionType = defineType({
       ],
     }),
     defineField({
+      name: 'artworks',
+      type: 'array',
+      of: [
+        {
+          type: 'reference',
+          to: [{type: 'artwork'}],
+        },
+      ],
+      description: 'Artworks included in this exhibition',
+    }),
+    defineField({
       name: 'description',
       type: 'array',
       of: [
@@ -63,9 +74,9 @@ export const exhibitionType = defineType({
       type: 'string',
     }),
     defineField({
-      name: 'curator',
-      type: 'reference',
-      to: [{type: 'person'}],
+      name: 'curators',
+      type: 'array',
+      of: [{type: 'reference', to: [{type: 'person'}]}],
     }),
     defineField({
       name: 'artists',
@@ -81,12 +92,14 @@ export const exhibitionType = defineType({
       images: 'images',
     },
     prepare: ({title, artists, firstArtist, images}) => {
-      const media = images?.[0] || null
-      const subtitle = `${firstArtist}  ${
-        artists.length - 1 > 0
-          ? `and ${artists.length - 1} other${artists.length > 2 ? 's' : ''}`
-          : ''
-      } `
+      const media = (images && images.length && images[0]) || null
+      const subtitle = firstArtist
+        ? `${firstArtist}  ${
+            artists.length - 1 > 0
+              ? `and ${artists.length - 1} other${artists.length > 2 ? 's' : ''}`
+              : ''
+          } `
+        : 'No artists listed'
       return {
         title: `${title || 'Untitled Exhibition'}`,
         subtitle,
