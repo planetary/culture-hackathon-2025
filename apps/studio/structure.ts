@@ -10,15 +10,18 @@ export const structure: StructureResolver = (S) => {
   const editorialItems = ['news']
   const personItems = ['person']
   const contextItems = ['assist.instruction.context']
-  return S.list()
-    .title('Content')
-    .items([
-      ...filterItems(artworkItems),
-      S.divider(),
-      ...filterItems(editorialItems),
-      S.divider(),
-      ...filterItems(personItems),
-      S.divider(),
-      ...filterItems(contextItems),
-    ])
+  return (
+    S.list()
+      .title('Content')
+      // todo: could probably just be a loop
+      .items([
+        ...filterItems(artworkItems),
+        S.divider(),
+        ...filterItems(editorialItems),
+        S.divider(),
+        ...filterItems(personItems),
+        S.divider(),
+        ...filterItems(contextItems),
+      ])
+  )
 }
