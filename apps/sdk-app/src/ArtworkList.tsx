@@ -1,6 +1,18 @@
 import './ExampleComponent.css'
-import {useDocuments} from '@sanity/sdk-react'
+import {useDocuments, useDocument, useEditDocument} from '@sanity/sdk-react'
 
+function ArtworkTitleInput({handle}) {
+  console.log('handle', handle)
+  const name = useDocument(handle, 'name')
+  // console.log('name', name)
+  const editName = useEditDocument(handle, 'name')
+
+  function handleNameChange(event: React.ChangeEvent<HTMLInputElement>) {
+    editName(event.target.value)
+  }
+
+  return <input type="text" value={name} onChange={handleNameChange} />
+}
 /**
  * Example component that fetches and displays a list of artworks from the Sanity dataset.
  */
@@ -16,6 +28,8 @@ export function ArtworkList() {
       <ol>
         {data.map((doc) => (
           <li key={doc.documentId}>
+            <ArtworkTitleInput handle={doc} />
+            <br />
             <code>{JSON.stringify(doc, null, 2)}</code>
           </li>
         ))}
