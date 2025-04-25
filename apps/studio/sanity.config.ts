@@ -11,7 +11,7 @@ export default defineConfig({
   title: 'Culture Hackathon 2025',
 
   projectId: process.env.SANITY_STUDIO_PROJECT_ID!,
-  dataset: 'production',
+  dataset: process.env.SANITY_STUDIO_DATASET!,
 
   plugins: [structureTool({structure}), visionTool(), media(), assist()],
 

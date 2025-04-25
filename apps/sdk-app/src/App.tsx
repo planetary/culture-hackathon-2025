@@ -9,7 +9,7 @@ export function App() {
   const sanityConfigs: SanityConfig[] = [
     {
       projectId: process.env.SANITY_STUDIO_PROJECT_ID!,
-      dataset: 'production',
+      dataset: process.env.SANITY_STUDIO_DATASET!,
     },
   ]
 
