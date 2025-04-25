@@ -11,7 +11,12 @@ function ArtworkTitleInput({handle}) {
     editName(event.target.value)
   }
 
-  return <input type="text" value={name} onChange={handleNameChange} />
+  return (
+    <>
+      <label>Name:&nbsp;</label>
+      <input type="text" value={name} onChange={handleNameChange} />
+    </>
+  )
 }
 /**
  * Example component that fetches and displays a list of artworks from the Sanity dataset.
