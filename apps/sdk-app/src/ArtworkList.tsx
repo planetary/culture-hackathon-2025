@@ -1,5 +1,5 @@
 import './ExampleComponent.css'
-import {useDocuments, useDocument, useEditDocument} from '@sanity/sdk-react'
+import {useDocuments} from '@sanity/sdk-react'
 import {useState, useMemo, useEffect} from 'react'
 import {useProjection, type DocumentHandle, type SanityDocumentLike} from '@sanity/sdk-react'
 import {DraggableArtworkList} from './DraggableArtworkList'
@@ -7,23 +7,6 @@ import {ArtworkSearch} from './ArtworkSearch'
 import imageUrlBuilder from '@sanity/image-url'
 import './ArtworkList.css'
 
-function ArtworkTitleInput({handle}) {
-  console.log('handle', handle)
-  const name = useDocument(handle, 'name')
-  // console.log('name', name)
-  const editName = useEditDocument(handle, 'name')
-
-  function handleNameChange(event: React.ChangeEvent<HTMLInputElement>) {
-    editName(event.target.value)
-  }
-
-  return (
-    <>
-      <label>Name:&nbsp;</label>
-      <input type="text" value={name} onChange={handleNameChange} />
-    </>
-  )
-}
 
 interface ArtworkData {
   name: string
@@ -147,6 +130,22 @@ export function ArtworkList() {
     setSelectedHandles((prev) => prev.filter((h) => h.documentId !== id))
   }
 
+  const selectedRandomDocumentHandle = (count: number) => {
+    const randomHandles = []
+    const allHandles = allArtworkHandles || []
+    const totalHandles = allHandles.length
+    const randomIndices = new Set() // To avoid duplicates
+    while (randomHandles.length < count && randomIndices.size < totalHandles) {
+      const randomIndex = Math.floor(Math.random() * totalHandles)
+      if (!randomIndices.has(randomIndex)) {
+        randomIndices.add(randomIndex)
+        randomHandles.push(allHandles[randomIndex])
+      }
+    }
+    return randomHandles
+  }
+ 
+
   return (
     <div className="artwork-container">
       <div className="search-section">
@@ -180,6 +179,23 @@ export function ArtworkList() {
           <DraggableArtworkList handles={selectedHandles} onRemove={handleRemove} />
         )}
       </div>
+
+      {/* add a button to add three more artwork documents to the list */}
+      <button
+        className="add-artworks-button"
+        onClick={() => {
+          const newHandles = selectedRandomDocumentHandle(3)
+          console.log({newHandles});
+          
+          setSelectedHandles((prev) => [...prev, ...newHandles])
+        }}
+      >
+        Suggest Additional Artworks
+      </button>
+
+      
+
+
     </div>
   )
 }
