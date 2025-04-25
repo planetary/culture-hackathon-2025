@@ -5,4 +5,12 @@ export default defineCliConfig({
     organizationId: process.env.SANITY_STUDIO_ORGANIZATION_ID!,
     entry: './src/App.tsx',
   },
+  // temporary fix to allow dev outside of dashboard
+  vite: {
+    server: {
+      fs: {
+        strict: false,
+      },
+    },
+  },
 })

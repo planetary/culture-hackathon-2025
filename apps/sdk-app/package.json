@@ -13,8 +13,8 @@
     "sanity"
   ],
   "dependencies": {
-    "@sanity/sdk": "^0.0.0-rc",
-    "@sanity/sdk-react": "^0.0.0-rc",
+    "@sanity/sdk": "0.0.0-rc.5",
+    "@sanity/sdk-react": "0.0.0-rc.5",
     "react": "^19",
     "react-dom": "^19"
   },
