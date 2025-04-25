@@ -2,7 +2,7 @@
 
 ## Getting started
 
-Copy the repo
+Fork this repo or copy with degit
 
 ```bash
 npx degit https://github.com/demo-repositories/culture-hackathon-2025
