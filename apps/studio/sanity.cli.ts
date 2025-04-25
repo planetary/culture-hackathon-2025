@@ -1,5 +1,5 @@
 import {defineCliConfig} from 'sanity/cli'
-
+const studioHost = `culture-hackathon-${process.env.SANITY_STUDIO_DATASET}`
 export default defineCliConfig({
   api: {
     projectId: process.env.SANITY_STUDIO_PROJECT_ID!,
@@ -10,5 +10,5 @@ export default defineCliConfig({
    * Learn more at https://www.sanity.io/docs/cli#auto-updates
    */
   autoUpdates: true,
-  studioHost: process.env.SANITY_STUDIO_HOSTNAME,
+  studioHost,
 })
