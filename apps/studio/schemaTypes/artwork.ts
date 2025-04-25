@@ -16,6 +16,11 @@ export const artworkType = defineType({
       to: [{type: 'person'}],
     }),
     defineField({
+      name: 'gallery',
+      type: 'reference',
+      to: [{type: 'gallery'}],
+    }),
+    defineField({
       name: 'images',
       type: 'array',
       of: [

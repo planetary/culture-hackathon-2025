@@ -9,7 +9,9 @@ export const structure: StructureResolver = (S) => {
   const artworkItems = ['artwork', 'exhibition']
   const editorialItems = ['news']
   const personItems = ['person']
+  const galleryItems = ['gallery']
   const contextItems = ['assist.instruction.context']
+  const tourItems = ['tour']
   return (
     S.list()
       .title('Content')
@@ -22,6 +24,10 @@ export const structure: StructureResolver = (S) => {
         ...filterItems(personItems),
         S.divider(),
         ...filterItems(contextItems),
+        S.divider(),
+        ...filterItems(galleryItems),
+        S.divider(),
+        ...filterItems(tourItems),
       ])
   )
 }
